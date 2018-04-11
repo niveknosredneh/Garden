@@ -1,5 +1,7 @@
 # Garden
 
+![alt text](temp.png "Graph Example")
+
 Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
