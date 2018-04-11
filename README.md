@@ -14,13 +14,13 @@ TODO:
 
 ### Prerequisites
 
-python 2.7.x
-matplotlib/pyplot
-https://github.com/pyserial/pyserial
+- python 2.7.x
+- matplotlib/pyplot
+- https://github.com/pyserial/pyserial
 
-TMP36 temperature sensor
-Photoresistor
-LM393 driven analog moisture sensor
+- TMP36 temperature sensor
+- Photoresistor
+- LM393 driven analog moisture sensor
 
 ## Running
 
@@ -29,8 +29,8 @@ PythonSerial.py can be run standalone but my shoddy serial connection makes usin
 
 Confirmed working on:
 
-Python 2.7.9
-Matplotlib 1.4.2
+-Python 2.7.9
+-Matplotlib 1.4.2
 
 ## License
 
