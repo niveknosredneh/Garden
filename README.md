@@ -24,6 +24,7 @@ TODO:
 
 ## Running
 
+LightSensor.ino is the Arduino sketch which must be uploaded to your board
 plot.sh is meant to run as a cron job as it continuously runs the python script until it succeeds.
 PythonSerial.py can be run standalone but my shoddy serial connection makes using plot.sh much easier.
 
