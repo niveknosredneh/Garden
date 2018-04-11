@@ -1,9 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
+PythonSerial.py
 
-Kevin Henderson
+Reads serial data from arduino and logs the data while also outputing new graphs
 
+
+Kevin Henderson 2018
 
 """
 
@@ -24,6 +27,8 @@ import numpy as np
 
 
 """Open the serial port"""
+# fix so USB0 or USB1 can be used so as to not fail
+# open arduino serial object
 try:
     arduino = serial.Serial("/dev/ttyUSB0",timeout=1,baudrate=9600)
 except:
@@ -31,18 +36,20 @@ except:
 
 
 rawdata = ''
-dt = datetime.now()
+dt = datetime.now() # get current time
 
 """Receiving data """
 # 2 floats should be 8 chars, if less then serial receive failed
-while len(rawdata.strip())<7:
-    rawdata = str(arduino.readline())
+while len(rawdata.strip())<8:
+    rawdata = str(arduino.readline()) # read input from arduino
 print rawdata
 
 """ writing data to file """
 def write(L):
     print "writing to file...\n"
-    light,temp,soil = rawdata.split(";")
+	
+    light,temp,soil = rawdata.split(";") # splits rawdata into proper data values 
+
     file=open("/home/kevin/LightSensor/light.txt",mode='aw')
     file.write(dt.strftime("%Y%m%d%H%M%S") +"  " + light + "\n")
     file.close()
@@ -55,7 +62,7 @@ def write(L):
     file.write(dt.strftime("%Y%m%d%H%M%S") +"  " + soil) # automatically adds \n
     file.close()
 
-write(rawdata)
+write(rawdata) # see above
 
 """ Begin plotting """
 
