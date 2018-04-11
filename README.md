@@ -1,6 +1,6 @@
 # Garden
 
-![alt text](temp.png =500x320)
+![](temp.png width=450)
 
 Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
