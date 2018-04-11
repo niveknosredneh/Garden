@@ -1,4 +1,4 @@
-# Garden
+# Kevin's Garden Automation and Datalogging
 
 <img src="https://github.com/niveknosredneh/Garden/blob/master/temp.png" width="480">
 
