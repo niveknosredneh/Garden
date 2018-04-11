@@ -12,7 +12,7 @@ TODO:
 - add relay with water pump to enable automatic watering 
 - create backup script to only show 72 hours worth of data
 
-### Prerequisites
+## Prerequisites
 
 - python 2.7.x
 - matplotlib/pyplot
