@@ -1,4 +1,6 @@
-# Garden
+# Kevin's Garden Automation and Datalogging
+
+<img src="https://github.com/niveknosredneh/Garden/blob/master/temp.png" width="480">
 
 Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
