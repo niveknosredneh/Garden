@@ -1,7 +1,7 @@
 # Kevin's Garden Automation and Datalogging
 
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="480">
-
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="420" align="left">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="420" align="right">
 Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
@@ -24,19 +24,19 @@ TODO:
 - Photoresistor
 - LM393 driven analog moisture sensor
 
-## Circuit
-
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="640">
 
 ## Running
 
 LightSensor.ino is the Arduino sketch which must be uploaded to your board
+
 plot.sh is meant to run as a cron job as it continuously runs the python script until it succeeds.
+
 PythonSerial.py can be run standalone but my shoddy serial connection makes using plot.sh much easier.
 
 Confirmed working on:
 
 -Python 2.7.9
+
 -Matplotlib 1.4.2
 
 ## License
