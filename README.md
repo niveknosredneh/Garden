@@ -24,6 +24,10 @@ TODO:
 - Photoresistor
 - LM393 driven analog moisture sensor
 
+## Circuit
+
+<img src="https://github.com/niveknosredneh/Garden/blob/master/Circuit.png" width="640">
+
 ## Running
 
 LightSensor.ino is the Arduino sketch which must be uploaded to your board
