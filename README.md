@@ -11,7 +11,7 @@ A cron job can be set to automate this on a regular interval while also running 
 The Pi can also runs the lighttpd web server, hosting this data on the world wide web.
 
 TODO:
-- add humidity sensing capabilities with the DHT11 sensor 
+- ~~add humidity sensing capabilities with the DHT11 sensor~~
 - add relay with water pump to enable automatic watering 
 - create backup script to only show 72 hours worth of data
 
@@ -25,11 +25,11 @@ TODO:
 - TMP36 temperature sensor
 - Photoresistor
 - LM393 driven analog moisture sensor
-
+- (optional) https://platformio.org/ allows for headless updating of the arduino over ssh
 
 ## Running
 
-LightSensor.ino is the Arduino sketch which must be uploaded to your board
+files in ./src are to be compiled and uploaded to the Arduino
 
 plot.sh is meant to run as a cron job as it continuously runs the python script until it succeeds.
 
