@@ -3,7 +3,7 @@
 
 # Kevin's Garden Automation and Datalogging
 
-Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
+Analog/Digital sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
 A cron job can be set to automate this on a regular interval while also running a script to capture a current photo.
@@ -24,7 +24,7 @@ TODO:
 - Arduino Uno or Nano
 - TMP36 temperature sensor
 - Photoresistor
-- LM393 driven analog moisture sensor
+- Analog moisture sensor
 - (optional) https://platformio.org/ allows for headless updating of the arduino over ssh
 
 ## Running
@@ -37,9 +37,7 @@ PythonSerial.py can be run standalone but my shoddy serial connection makes usin
 
 Confirmed working on:
 
-- Python 2.7.9
-
-- Matplotlib 1.4.2
+Raspberry Pi 1-B - Arduino Nano w/ Atmega328 - Python 2.7.9 - Matplotlib 1.4.2
 
 ## License
 
