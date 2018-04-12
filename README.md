@@ -1,7 +1,8 @@
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="420" align="left">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="500" align="right">
+
 # Kevin's Garden Automation and Datalogging
 
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="420" align="left">
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="420" align="right">
 Analog sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
