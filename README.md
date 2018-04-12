@@ -1,5 +1,5 @@
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="400" align="left">
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="460" align="right">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="360" align="left">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="440" align="right">
 
 # Kevin's Garden Automation and Datalogging
 
