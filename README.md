@@ -1,5 +1,5 @@
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="640">
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="640">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="480" align="middle">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="640" align="middle">
 
 # Kevin's Garden Automation and Datalogging
 
@@ -21,6 +21,7 @@ TODO:
 - matplotlib/pyplot
 - https://github.com/pyserial/pyserial
 
+- Arduino Uno or Nano
 - TMP36 temperature sensor
 - Photoresistor
 - LM393 driven analog moisture sensor
@@ -36,9 +37,9 @@ PythonSerial.py can be run standalone but my shoddy serial connection makes usin
 
 Confirmed working on:
 
--Python 2.7.9
+- Python 2.7.9
 
--Matplotlib 1.4.2
+- Matplotlib 1.4.2
 
 ## License
 
