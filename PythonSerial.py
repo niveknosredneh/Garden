@@ -90,7 +90,7 @@ plt.ylabel("Light %")
 plt.savefig('/home/kevin/LightSensor/light.png')
 plt.close()
 
-print "plotting Temperature graph"
+print "plotting Temperature graph" # to plots on 1 graph
 dates2,tempData = np.genfromtxt("/home/kevin/LightSensor/temp.txt", unpack=True,
         converters={ 0: mdates.strpdate2num('%Y%m%d%H%M%S')})
 dates3,tempDigitalData = np.genfromtxt("/home/kevin/LightSensor/tempD.txt", unpack=True,
@@ -102,9 +102,7 @@ line2, = plt.plot_date(x=dates2, y=tempDigitalData, label="Digital Sensor", fmt=
 ax.xaxis_date()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
 plt.gcf().autofmt_xdate()
-
-plt.legend([line1, line2], ["Analog Sensor", "Digital Sensor"], loc=2)
-
+plt.legend([line1, line2], ["Analog Sensor", "Digital Sensor"], loc=2) # label top left
 plt.title("Temperature")
 plt.ylabel("Degrees Celsius")
 plt.savefig('/home/kevin/LightSensor/temp.png')

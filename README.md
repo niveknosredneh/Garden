@@ -1,7 +1,6 @@
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="480" align="middle">
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="640" align="middle">
-
 # Kevin's Garden Automation and Datalogging
+
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="640" align="middle">
 
 Analog/Digital sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
 
@@ -14,18 +13,27 @@ TODO:
 - ~~add humidity sensing capabilities with the DHT11 sensor~~
 - add relay with water pump to enable automatic watering 
 - create backup script to only show 72 hours worth of data
+- remove USB cable by using the ESP8266 sensor
 
 ## Prerequisites
 
-- python 2.7.x
-- matplotlib/pyplot
-- https://github.com/pyserial/pyserial
+### Software
+- Python 2.7.x
+- Matplotlib/Pyplot/Numpy python libraries
+- [Pyserial](https://github.com/pyserial/pyserial)
+- [Adafruit_Sensor](https://github.com/adafruit/Adafruit_Sensor) and [DHT-sensor-library](https://github.com/adafruit/DHT-sensor-library) placed into your library folder
+- (Optionally) run [PlatformIO](https://platformio.org/) on the Pi for headless updating of the arduino over ssh
 
+### Hardware
 - Arduino Uno or Nano
 - TMP36 temperature sensor
 - Photoresistor
+- 10K resistor
 - Analog moisture sensor
-- (optional) https://platformio.org/ allows for headless updating of the arduino over ssh
+- DHT11 digital temperature and humidity sensor
+- ESP8266 wifi module for wireless communication with Pi
+
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/Circuit.png" width="640" align="middle">
 
 ## Running
 
@@ -37,7 +45,7 @@ PythonSerial.py can be run standalone but my shoddy serial connection makes usin
 
 Confirmed working on:
 
-Raspberry Pi 1-B - Arduino Nano w/ Atmega328 - Python 2.7.9 - Matplotlib 1.4.2
+Raspberry Pi 1-B w/ Raspbian 8 (Jessie)- Arduino Nano w/ Atmega328 - Python 2.7.9 - Matplotlib 1.4.2
 
 ## License
 
