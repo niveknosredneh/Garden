@@ -2,7 +2,7 @@
 
 <img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="640" align="middle">
 
-Analog/Digital sensors hooked up to Arduino/Atmega328P, processeing data and sending via USB/Serial or ESP8266/Wifi to a Raspberry Pi.
+Analog/Digital sensors hooked up to Arduino/Atmega328P, processing data and sending via USB/Serial or ESP8266/Wifi to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
 A cron job can be set to automate this on a regular interval while also running a script to capture a current photo.
@@ -11,9 +11,10 @@ The Pi can also runs the lighttpd web server, hosting this data on the world wid
 
 TODO:
 - ~~add humidity sensing capabilities with the DHT11 sensor~~
-- add relay with water pump to enable automatic watering 
+- ~~remove required USB cable by using the ESP8266 module~~
+- add 5V relay with water pump to enable automatic watering 
 - create backup script to only show 72 hours worth of data
-- ~~remove required USB cable by using the ESP8266 sensor~~
+
 
 ## Prerequisites
 
@@ -27,8 +28,8 @@ TODO:
 ### Hardware
 - Arduino Uno or Nano
 - TMP36 temperature sensor
-- Photoresistor
-- 10K resistor
+- ~~Photoresistor~~ (removed for now) 
+- ~~10K resistor~~
 - Analog moisture sensor
 - DHT11 digital temperature and humidity sensor
 - ESP8266 wifi module for wireless communication with Pi

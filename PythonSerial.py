@@ -49,7 +49,7 @@ data = urllib2.urlopen("http://192.168.100.104/")
 
 """Receiving data """
 # 2 floats should be 8 chars, if less then serial receive failed
-while ( len(rawdata.strip()) < 6):
+while ( len(rawdata.strip()) < 8):
     if(USE_SERIAL):
         rawdata = str(arduino.readline()) # read input from arduino
     else:
@@ -60,7 +60,7 @@ while ( len(rawdata.strip()) < 6):
 def write(L):
     print "writing to file...\n"
 	
-    temp,soil,humidity,tempD = rawdata.split(";") # splits rawdata into proper data values 
+    temp,soil,humidity,tempD, = rawdata.split(";") # splits rawdata into proper data values 
 
     file=open("/home/kevin/LightSensor/temp.txt",mode='aw')
     file.write(dt.strftime("%Y%m%d%H%M%S") +"  " + temp+ "\n")
@@ -88,13 +88,23 @@ dates2,tempData = np.genfromtxt("/home/kevin/LightSensor/temp.txt", unpack=True,
 dates3,tempDigitalData = np.genfromtxt("/home/kevin/LightSensor/tempD.txt", unpack=True,
         converters={ 0: mdates.strpdate2num('%Y%m%d%H%M%S')})
 
+#average of two
+avgTemp = np.add(tempData,tempDigitalData)
+avgTemp /= 2.0
+
 fig, ax = plt.subplots()
-line1, = plt.plot_date(x=dates2, y=tempData, label="Analog Sensor", fmt="r-")
-line2, = plt.plot_date(x=dates2, y=tempDigitalData, label="Digital Sensor", fmt="m-")
+line1, = plt.plot_date(x=dates2, y=tempData, label="Analog Sensor", fmt="r.")
+line12, = plt.plot_date(x=dates2, y=avgTemp, label="Average", fmt="k-")
+line2, = plt.plot_date(x=dates2, y=tempDigitalData, label="Digital Sensor", fmt="m.")
 ax.xaxis_date()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
 plt.gcf().autofmt_xdate()
-plt.legend([line1, line2], ["Analog Sensor", "Digital Sensor"], loc=2) # label top left
+
+# sets up legend
+legend = plt.legend([line1, line2, line12], ["Analog Sensor", "Digital Sensor", "Average"], loc="best")
+frame = legend.get_frame()
+frame.set_facecolor('white')
+
 plt.title("Temperature")
 plt.ylabel("Degrees Celsius")
 plt.savefig('/home/kevin/LightSensor/temp.png')
