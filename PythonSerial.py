@@ -11,6 +11,7 @@ Kevin Henderson 2018
 """
 
 import serial
+import urllib2
 from datetime import datetime, date, time
 
 import matplotlib
@@ -27,34 +28,34 @@ from matplotlib.dates import strpdate2num, num2date
 
 import numpy as np
 
-
-"""Open the serial port"""
+"""
+# Open the serial port
 # fix so USB0 or USB1 can be used so as to not fail
 # open arduino serial object
 try:
     arduino = serial.Serial("/dev/ttyUSB0",timeout=5,baudrate=9600)
 except:
     print('Please check the port')
-
+"""
 
 rawdata = ''
 dt = datetime.now() # get current time
 
+
+data = urllib2.urlopen("http://192.168.100.104/")
+
+
 """Receiving data """
 # 2 floats should be 8 chars, if less then serial receive failed
 while ( len(rawdata.strip()) < 6):
-    rawdata = str(arduino.readline()) # read input from arduino
+    rawdata = str(data.readline()) # read input from arduino
     print rawdata.strip()
 
 """ writing data to file """
 def write(L):
     print "writing to file...\n"
 	
-    light,temp,soil,humidity,tempD = rawdata.split(";") # splits rawdata into proper data values 
-
-    file=open("/home/kevin/LightSensor/light.txt",mode='aw')
-    file.write(dt.strftime("%Y%m%d%H%M%S") +"  " + light + "\n")
-    file.close()
+    temp,soil,humidity,tempD = rawdata.split(";") # splits rawdata into proper data values 
 
     file=open("/home/kevin/LightSensor/temp.txt",mode='aw')
     file.write(dt.strftime("%Y%m%d%H%M%S") +"  " + temp+ "\n")
@@ -75,20 +76,6 @@ def write(L):
 write(rawdata) # see above
 
 """ Begin plotting """
-
-print "plotting Light graph"
-dates1,lightData = np.genfromtxt("/home/kevin/LightSensor/light.txt", unpack=True,
-        converters={ 0: mdates.strpdate2num('%Y%m%d%H%M%S')})
-
-fig, ax = plt.subplots()
-ax.xaxis_date()
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
-plt.gcf().autofmt_xdate()
-plt.plot_date(x=dates1, y=lightData, fmt="y-")
-plt.title("Light Intensity")
-plt.ylabel("Light %")
-plt.savefig('/home/kevin/LightSensor/light.png')
-plt.close()
 
 print "plotting Temperature graph" # to plots on 1 graph
 dates2,tempData = np.genfromtxt("/home/kevin/LightSensor/temp.txt", unpack=True,
