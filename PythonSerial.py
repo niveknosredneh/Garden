@@ -10,6 +10,8 @@ Kevin Henderson 2018
 
 """
 
+USE_SERIAL = False # 0 for esp8266, 1 for usb serial
+
 import serial
 import urllib2
 from datetime import datetime, date, time
@@ -28,15 +30,16 @@ from matplotlib.dates import strpdate2num, num2date
 
 import numpy as np
 
-"""
+
 # Open the serial port
 # fix so USB0 or USB1 can be used so as to not fail
 # open arduino serial object
-try:
-    arduino = serial.Serial("/dev/ttyUSB0",timeout=5,baudrate=9600)
-except:
-    print('Please check the port')
-"""
+if(USE_SERIAL):
+	try:
+		arduino = serial.Serial("/dev/ttyUSB0",timeout=5,baudrate=9600)
+	except( nameError ):
+		print('No Serial connection found - Please check the port')
+
 
 rawdata = ''
 dt = datetime.now() # get current time
@@ -44,11 +47,13 @@ dt = datetime.now() # get current time
 
 data = urllib2.urlopen("http://192.168.100.104/")
 
-
 """Receiving data """
 # 2 floats should be 8 chars, if less then serial receive failed
 while ( len(rawdata.strip()) < 6):
-    rawdata = str(data.readline()) # read input from arduino
+    if(USE_SERIAL):
+        rawdata = str(arduino.readline()) # read input from arduino
+    else:
+        rawdata = str(data.readline()) # read input from Wifi
     print rawdata.strip()
 
 """ writing data to file """

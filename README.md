@@ -2,7 +2,7 @@
 
 <img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="640" align="middle">
 
-Analog/Digital sensors hooked up to Arduino/Atmega328P, processeing data and sending via serial connection over USB to a Raspberry Pi.
+Analog/Digital sensors hooked up to Arduino/Atmega328P, processeing data and sending via USB/Serial or ESP8266/Wifi to a Raspberry Pi.
 
 The Pi logs the data and creates a new graph with python and the matplotlib library.
 A cron job can be set to automate this on a regular interval while also running a script to capture a current photo.
@@ -13,7 +13,7 @@ TODO:
 - ~~add humidity sensing capabilities with the DHT11 sensor~~
 - add relay with water pump to enable automatic watering 
 - create backup script to only show 72 hours worth of data
-- remove USB cable by using the ESP8266 sensor
+- ~~remove required USB cable by using the ESP8266 sensor~~
 
 ## Prerequisites
 
@@ -37,11 +37,12 @@ TODO:
 
 ## Running
 
-files in ./src are to be compiled and uploaded to the Arduino
+main.cpp in ./src is to be compiled and uploaded to the Arduino
+ESP8266main.cpp in ./src is to be compiled and uploaded to the ESP8266
 
 plot.sh is meant to run as a cron job as it continuously runs the python script until it succeeds.
 
-PythonSerial.py can be run standalone but my shoddy serial connection makes using plot.sh much easier.
+PythonSerial.py can be run standalone but my shoddy serial connection makes using plot.sh much easier.  Edit flag in py file for either serial or Wifi use.
 
 Confirmed working on:
 
