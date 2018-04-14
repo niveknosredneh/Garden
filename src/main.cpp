@@ -3,72 +3,80 @@
  * 
 
 Garden setup
+Sensors sending serial data to be logged
+temperature, humidity, light and soil moisture
 
 */
 
 #include <Arduino.h>
-#include <Wire.h>
-#include <DHT.h>
+#include <DHT.h> // requires adafruit_sensor library
 
-#define DHTPIN 5     // what digital pin we're connected to
-#define DHTTYPE DHT11   // DHT 11
+#include <SoftwareSerial.h>
+SoftwareSerial ESPserial(2, 3); // RX | TX
 
-int photoPin = A0;    // photresistor
+
+int ledPin = 10;
+// int photoPin = A0;    // photresistor
 int tempPin = A7;     //  TMP36 sensor
 int soilApin = A4;    // LM393 analog moisture sensor
+int dhtPin = 5;     // DHT11 digital humidity/temperature
 
-
-float tempValue = 0;
-float temperature = 0;
-float lightValue = 0;  // variable to store the value coming from the sensor
-float lightPercent = 0;
-
-float humidity = 0;
-float temperatureDigital = 0;
-int soilAnalog = 0;
-
-DHT dht(5,DHT11);
+DHT dht(dhtPin,DHT11); // running DHT11, change for DHT22 or other
 
 void setup() {
    
-  pinMode(photoPin, INPUT);
+//  pinMode(photoPin, INPUT);
   pinMode(tempPin, INPUT);
   pinMode(soilApin, INPUT);
-  pinMode(5, INPUT);
+  pinMode(dhtPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 
-  
-  Serial.begin(9600); // trying higher baud
+
+    // Start the software serial for communication with the ESP8266
+    ESPserial.begin(9600);  
 }
 
 void loop() {
+
+  analogWrite(ledPin, 350);
   
-  lightValue = analogRead(photoPin);
-  lightPercent = (lightValue / 1023) * 100;
-  
-  tempValue = analogRead(tempPin);
+  // Light
+//  int lightValue = analogRead(photoPin);
+//  float lightPercent = (lightValue / 1023) * 100; // Analog pins have 1023 steps
 
-  soilAnalog = analogRead(soilApin);
-
-  humidity = dht.readHumidity();
-  temperatureDigital = dht.readTemperature();
-
-  // Check if any reads failed and exit early (to try again).
-  if (isnan(humidity) || isnan(temperatureDigital)) {
-    Serial.println("Failed to read from DHT sensor");
-  return;
-  }
-  
-
-   //Voltage at pin in milliVolts = (reading from ADC) * (5000/1024)
+  // Temperature
+  int tempValue = analogRead(tempPin);
+  //Voltage at pin in milliVolts = (reading from ADC) * (5000/1024)
   float tempVoltage = tempValue * 0.004882814;
   //Centigrade temperature = [(analog voltage in mV) - 500] / 10
-  temperature = (tempVoltage - 0.5) * 100.0;
+  float temperature = (tempVoltage - 0.5) * 100.0;
 
-  Serial.println((String)lightPercent+';'+(String)temperature
-            +';'+(String)soilAnalog+';'+(String)humidity				    +';'+(String)temperatureDigital);
+  // Soil Moisture
+  int soilAnalog = analogRead(soilApin);
 
+  // Humidity
+  float humidity = dht.readHumidity();
+  float temperatureDigital = dht.readTemperature();
+  // Check if any reads failed on DHT11 and exit early (to try again).
+  if (isnan(humidity) || isnan(temperatureDigital)) {
+    ESPserial.println("Failed to read from DHT sensor");
+  return;
+  }
 
-  Serial.flush();
+  analogWrite(ledPin, 1023);
 
-  delay(3000);
+  // print to serial in order: 1-light 2-analogTemp 3-moisture 4-humidity 5-digitalTemp
+   if (ESPserial.available()) { 
+      ESPserial.println(
+   //    (String)lightPercent+';'+
+      (String)temperature+';'+(String)soilAnalog
+       +';'+(String)humidity+';'+(String)temperatureDigital);
+    
+    analogWrite(ledPin, 0);
+   }
+  
+
+  ESPserial.flush();
+
+  delay(3000); // 3 seconds?
 }
