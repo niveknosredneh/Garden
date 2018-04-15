@@ -38,8 +38,9 @@ TODO:
 
 ## Running
 
-main.cpp in ./src is to be compiled and uploaded to the Arduino
-ESP8266main.cpp in ./src is to be compiled and uploaded to the ESP8266
+main.cpp in ./src is to be compiled and uploaded to the Arduino.
+
+ESP8266main.cpp in ./src is to be compiled and uploaded to the ESP8266.
 
 plot.sh is meant to run as a cron job as it continuously runs the python script until it succeeds.
 

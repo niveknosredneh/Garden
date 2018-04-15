@@ -3,9 +3,7 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-// you can tell I don't care about privacy ;)
-// moving soon anyways
-const char* ssid = "MTS00337";  
+const char* ssid = "MTS00337";
 const char* password = "62gt37uf2t26";
 
 ESP8266WebServer server(80);
