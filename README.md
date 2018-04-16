@@ -16,7 +16,7 @@ TODO:
 - ~~add humidity sensing capabilities with the DHT11 sensor~~
 - ~~remove required USB cable by using the ESP8266 module~~
 - add 5V relay with water pump to enable automatic watering 
-- ~~create backup script to only show ~72 hours worth of data~~
+- ~~create backup script to only show 72 hours worth of data~~
 
 
 ## Prerequisites
