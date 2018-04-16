@@ -28,8 +28,9 @@ plt.style.use('ggplot') # thanks Juris!
 import matplotlib.dates as mdates
 from matplotlib.dates import strpdate2num, num2date
 
-import numpy as np
+from matplotlib.ticker import FormatStrFormatter
 
+import numpy as np
 
 # Open the serial port
 # fix so USB0 or USB1 can be used so as to not fail
@@ -94,8 +95,8 @@ avgTemp /= 2.0
 
 fig, ax = plt.subplots()
 line1, = plt.plot_date(x=dates2, y=tempData, label="Analog Sensor", fmt="r.", markersize = 3)
-line12, = plt.plot_date(x=dates2, y=avgTemp, label="Average", fmt="k:", markersize = 3)
 line2, = plt.plot_date(x=dates2, y=tempDigitalData, label="Digital Sensor", fmt="m.", markersize = 3)
+line12, = plt.plot_date(x=dates2, y=avgTemp, label="Average", fmt="k", markersize = 4)
 ax.xaxis_date()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
 plt.gcf().autofmt_xdate()
@@ -114,25 +115,28 @@ print "plotting Moisture graph"
 dates4,soilData = np.genfromtxt("/home/kevin/LightSensor/soil.txt", unpack=True,
         converters={ 0: mdates.strpdate2num('%Y%m%d%H%M%S')})
 
+soilData /= 10.0
+
 fig, ax = plt.subplots()
 ax.xaxis_date()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
+
 plt.gcf().autofmt_xdate()
 plt.plot_date(x=dates4, y=soilData, fmt="b-")
 plt.title("Substrate Moisture")
-plt.ylabel("Sahara Desert = 100  /  Pool Party = 900")
+plt.ylabel("% Water")
 plt.savefig('/home/kevin/LightSensor/soil.png')
 plt.close()
 
 print "plotting Humidity graph"
-dates5,soilData = np.genfromtxt("/home/kevin/LightSensor/humidity.txt", unpack=True,
+dates5,humidityData = np.genfromtxt("/home/kevin/LightSensor/humidity.txt", unpack=True,
         converters={ 0: mdates.strpdate2num('%Y%m%d%H%M%S')})
 
 fig, ax = plt.subplots()
 ax.xaxis_date()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
 plt.gcf().autofmt_xdate()
-plt.plot_date(x=dates5, y=soilData, fmt="c-")
+plt.plot_date(x=dates5, y=humidityData, fmt="c-")
 plt.title("Relative Humidity")
 plt.ylabel("Humidity %")
 plt.savefig('/home/kevin/LightSensor/humidity.png')
