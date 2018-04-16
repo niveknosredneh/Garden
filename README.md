@@ -1,6 +1,6 @@
 # Kevin's Garden Automation and Datalogging
 
-<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/temp.png" width="640" align="middle">
+<img src="https://github.com/niveknosredneh/Garden/blob/master/screenshots/graphs.png" width="640" align="middle">
 
 Analog/Digital sensors hooked up to Arduino/Atmega328P, processing data and sending via USB/Serial or ESP8266/Wifi to a Raspberry Pi.
 
