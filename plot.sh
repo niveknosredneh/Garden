@@ -2,18 +2,19 @@
 
 #backup 1 at a time past limit
 lines=$( cat humidity.txt | wc -l )
+
 if [ $lines > 500 ]
 then 
 	head humidity.txt -n 1 >> humidity.txtbk; 
 	tail humidity.txt -n +2 > humidity.tmp;
 	mv humidity.tmp humidity.txt;
 fi
-lines=$( cat temp.txt | wc -l )
+lines=$( cat tempA.txt | wc -l )
 if [ $lines > 500 ]
 then 
-	head temp.txt -n 1 >> temp.txtbk;
-	tail temp.txt -n +2 > temp.tmp;
-	mv temp.tmp temp.txt;
+	head tempA.txt -n 1 >> tempA.txtbk;
+	tail tempA.txt -n +2 > tempA.tmp;
+	mv tempA.tmp tempA.txt;
 fi
 lines=$( cat tempD.txt | wc -l )
 if [ $lines > 500 ]
